@@ -1,0 +1,126 @@
+#tabela para query 1
+#colocar o nome do keyspace no lugar de faculdade
+USE faculdade
+
+CREATE TABLE alunos (
+    id_aluno UUID PRIMARY KEY,
+    nome TEXT,
+    ciclo INT,
+    formado BOOLEAN,
+    id_curso INT,
+    semestre_formacao INT,
+    ano_formacao INT,
+    disciplinas FROZEN<LIST<FROZEN<disciplina_detalhes>>>
+);
+#tabela para query 1
+CREATE TYPE disciplina_detalhes (
+    codigo TEXT,
+    nome TEXT,
+    semestre INT,
+    ano INT,
+    nota_final DECIMAL
+);
+
+#Query 2 
+CREATE TABLE professor_disciplinas (
+    id_professor UUID,
+    nome TEXT,
+    codigo_disciplina TEXT,
+    nome_disciplina TEXT,
+    semestre INT,
+    ano INT,
+    PRIMARY KEY (id_professor, ano, semestre, codigo_disciplina)
+);
+
+#Query 3
+CREATE TABLE alunos_formados (
+    ano INT,
+    semestre INT,
+    id_aluno UUID,
+    nome TEXT,
+    id_curso INT,
+    nome_curso TEXT,
+    PRIMARY KEY ((ano, semestre), id_aluno)
+);
+
+#query 4
+CREATE TABLE chefes_departamento (
+    id_departamento INT PRIMARY KEY,
+    nome_departamento TEXT,
+    id_professor UUID,
+    nome_professor TEXT
+);
+
+#query 5
+CREATE TYPE aluno_detalhes (
+    id_aluno UUID,
+    nome TEXT
+);
+
+#Query 5
+CREATE TABLE tcc_grupos (
+    id_tcc UUID PRIMARY KEY,
+    titulo TEXT,
+    id_professor UUID,
+    nome_professor TEXT,
+    alunos FROZEN<LIST<FROZEN<aluno_detalhes>>>
+);
+
+#se pá  a primeira query
+SELECT * FROM alunos_formados WHERE ano = 2024 AND semestre = 1;
+
+
+#como inserir dados na primeira Query e na primeira tabela
+INSERT INTO alunos (id_aluno, nome, ciclo, formado, id_curso, semestre_formacao, ano_formacao, disciplinas)
+VALUES (
+    uuid(), # sei lá precisa , se pá cria a chave primaria
+    'Jana Smythin', #nome do aluno
+    1, # ciclo
+    true, #booleano
+    1, # id_curso não sei se é necessário
+    1, #semestrão 
+    2024, #ano de que forma
+    [
+        {codigo: 'PG101', nome: 'Gestão de Pessoas – Relações Humanas', semestre: 1, ano: 2022, nota_final: 8.5}, # aqui que ferra tem que passar tudo da disciplina
+        {codigo: 'MR101', nome: 'Teoria e Fundamentos de Gestão', semestre: 1, ano: 2022, nota_final: 7.9}
+    ]
+);
+
+
+#inserir dados na table_diciplinas
+INSERT INTO professor_disciplinas (id_professor, nome_professor, disciplinas)
+VALUES (
+    7358,
+    'Glennis Cosens',
+    [
+        {codigo: 'PG101', nome: 'Gestão de Pessoas – Relações Humanas', semestre: 1, ano: 2022},
+        {codigo: 'MR101', nome: 'Teoria e Fundamentos de Gestão', semestre: 2, ano: 2023}
+    ]
+);
+
+#inserir na tabele alunos formados
+INSERT INTO alunos_formados (ano, semestre, id_aluno, nome_aluno, id_curso)
+VALUES (2024, 1, 8490, 'Jana Smythin', 1);
+
+
+#inserir na tabela chefe_departamento
+INSERT INTO chefes_departamento (id_departamento, nome_departamento, id_professor, nome_professor)
+VALUES (1, 'Línguas', 7358, 'Glennis Cosens');
+
+
+#inseir na tabela tcc_grupos
+INSERT INTO tcc_grupos (id_tcc, titulo, alunos, id_professor, nome_professor)
+VALUES (
+    uuid(),
+    'Estudo sobre Técnicas de Ensino de Artes',
+    [ {id_aluno: 8490, nome: 'Jana Smythin'}, {id_aluno: uuid(), nome: 'Carlos Souza'} ],
+    7358,
+    'Glennis Cosens'
+);
+
+#Jão -O que eu acho que tem que fazer para criar  e conversei com o leo
+# pega tudo que a gente tem e transforma as tabelas de sql em excel
+# cria uma nova "tabela do excel" para cada "tabela do codigo do casssandra"....
+#...  utilizando PROCX() nas outras "tabelas já criadas de SQL"
+# criou usa um concatenar bonitão para juntar tudo na tbl do cassandra
+#ou criar as tabelas no pelo python 
