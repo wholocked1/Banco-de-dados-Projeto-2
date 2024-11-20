@@ -1,10 +1,9 @@
 Query 01
 SELECT *
 FROM faculdade.aluno
-WHERE id_aluno = 1530;
 
 Query 02
-SELECT * FROM faculdade.prof
-WHERE id_prof = 9852;
+SELECT * 
+FROM faculdade.prof
 
 Query 03
