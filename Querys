@@ -1,9 +1,16 @@
 Query 01
 SELECT *
-FROM faculdade.aluno
+FROM faculdade.disciplina_detalhes
 
 Query 02
 SELECT * 
-FROM faculdade.prof
+FROM faculdade.professor_disciplinas
 
 Query 03
+SELECT * 
+FROM alunos_formados
+
+Query 04
+SELECT * 
+FROM chefes_departamento
+
