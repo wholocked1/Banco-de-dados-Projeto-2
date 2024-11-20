@@ -1,0 +1,10 @@
+Query 01
+SELECT *
+FROM faculdade.hist_aluno
+WHERE id_aluno = 1530;
+
+Query 02
+SELECT * FROM faculdade.hist_prof
+WHERE id_prof = 9852;
+
+Query 03
