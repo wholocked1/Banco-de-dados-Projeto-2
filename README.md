@@ -8,7 +8,7 @@
 <br><br>
 
 # Explicação
-Estamos usando a plataforma MongoDB para construir o banco de dados de forma gratuita e para colocar as informações e testar o código que estamos implementando estamos fazendo um código pelo CodeSpace.<br><br>
+Estamos usando a plataforma CassandraDB para construir o banco de dados de forma gratuita e para colocar as informações e testar o código que estamos implementando estamos fazendo um código pelo CodeSpace.<br><br>
 
 O código no arquivo 'ALUNO.json' está as informações criadas aleatoriamente usando a ferramenta [Mockaroo]([url](https://www.mockaroo.com)) para criar as informações para serem carregadas no banco de dados.<br><br>
 O código no arquivo 'Professor.json' está as informações criadas aleatoriamente usando a ferramenta Mockaroo para criar informações aleatórias para serem carregadas no banco de dados.<br><br>
@@ -19,7 +19,7 @@ O código no arquivo 'Hist_Professor.json' está as informações referentes ao 
 O código no arquivo 'Matriz.json' está as informações que linkam as informações presentes no curso com as informações das disciplinas para serem carregados no banco de dados. Esse código foi criado a mão para melhor controle.<br><br>
 O código no arquivo 'TCC.json' está as informações que dos TCCs, como título, id e id do professor para carregar no banco de dados. Ela foi criada de forma controlada pela plataforma Mockaroo.<br><br>
 O código no arquivo 'Hist_Aluno.json' está as informações de histórico do aluno com as notas, semestre, ano, id do aluno e código da disciplina. Esse arquivo foi criado a mão.<br><br>
-O arquivo "Querys.py" está as querys com um tipo de interface pelo terminal que você pode escolher qual query que deseja realizar na ordem que está documentado ao decorrer do código.<br><br>
+O arquivo "Querys" está as querys com um tipo de interface pelo terminal que você pode escolher qual query que deseja realizar na ordem que está documentado ao decorrer do código.<br><br>
 
 
 **Diagrama relacional:**
